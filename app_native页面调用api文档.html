@@ -1,0 +1,725 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>app native页面调用API文档</title>
+
+</head>
+<body>
+<h1>app native页面调用API文档</h1>
+
+<hr />
+
+<p><code>v0.1   李仲禹   2016-4-21</code>  <br/>
+<br/></p>
+
+<h2>目录</h2>
+
+<p></br></p>
+
+<h3><a href="#2">说明</a></h3>
+
+<p><br/></p>
+
+<h3><a href="#3">C端</a></h3>
+
+<ul>
+<li><h6><a href="#3.1">WebView页</a></h6></li>
+<li><h6><a href="#3.2">推荐页</a></h6></li>
+<li><h6><a href="#3.3">职位搜索列表页</a></h6></li>
+<li><h6><a href="#3.4">消息页</a></h6></li>
+<li><h6><a href="#3.5">投递进度消息列表页</a></h6></li>
+<li><h6><a href="#3.6">企业直邀消息列表页</a></h6></li>
+<li><h6><a href="#3.7">企业详情页</a></h6></li>
+<li><h6><a href="#3.8">职位详情页</a></h6></li>
+<li><h6><a href="#3.9">发现页</a></h6></li>
+<li><h6><a href="#3.10">简历列表页</a></h6></li>
+<li><h6><a href="#3.11">简历编辑页</a></h6></li>
+<li><h6><a href="#3.12">创建简历页</a></h6></li>
+</ul>
+
+
+<p><br/></p>
+
+<h3><a href="#4">B端</a></h3>
+
+<ul>
+<li><h6><a href="#4.1">WebView页</a></h6></li>
+<li><h6><a href="#4.2">推荐页</a></h6></li>
+<li><h6><a href="#4.3">简历搜索列表页</a></h6></li>
+<li><h6><a href="#4.4">简历详情页</a></h6></li>
+<li><h6><a href="#4.5">消息页</a></h6></li>
+<li><h6><a href="#4.6">消息简历管理页</a></h6></li>
+<li><h6><a href="#4.7">个人信息编辑页</a></h6></li>
+<li><h6><a href="#4.8">职位管理页</a></h6></li>
+<li><h6><a href="#4.9">企业详情页</a></h6></li>
+<li><h6><a href="#4.10">职位详情页</a></h6></li>
+<li><h6><a href="#4.11">沟通设置页</a></h6></li>
+</ul>
+
+
+<p><br/></p>
+
+<h2 id="2">说明</h2>
+
+
+<p><br/>
+URL的scheme统一为chinahr，B、C端的host分别为business和customer。只有用户身份正确才会进行跳转，C端有部分页面要求有登录态。<br/>
+当用户身份不符时，仍希望强制切换用户身份，可以在host前加"force."。 <br/>
+<br/>
+例如：<strong>请求URL为"chinahr://customer/webview"，若当前用户身份为C端，则可以正常启动webview页。若当前用户身份为B端，则不做任何处理。如需要在B强制切换身份到C，则需要请求URL为"chinahr://force.customer/webview"</strong></p>
+
+<p><br/></p>
+
+<h2 id="3">C端</h2>
+
+
+<p><br/></p>
+
+<h3 id="3.1">WebView页</h3>
+
+
+<h6>URL</h6>
+
+<p>chinahr://customer/webview</p>
+
+<h6>参数</h6>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数名</th>
+<th align="center">必须</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">url</td>
+<td align="center">是</td>
+<td align="center">String</td>
+<td align="center">WebView要展示的url</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><br/></p>
+
+<h3 id="3.2">推荐页</h3>
+
+
+<h6>URL</h6>
+
+<p>chinahr://customer/recommend</p>
+
+<h6>参数</h6>
+
+<p>无</p>
+
+<p><br/></p>
+
+<h3 id="3.3">职位搜索列表页</h3>
+
+
+<h6>URL</h6>
+
+<p>chinahr://customer/jobsearch</p>
+
+<h6>参数</h6>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数名</th>
+<th align="center">必须</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">keyword</td>
+<td align="center">否</td>
+<td align="center">String</td>
+<td align="center">搜索的关键字</td>
+</tr>
+<tr>
+<td align="center">cityid</td>
+<td align="center">否</td>
+<td align="center">String</td>
+<td align="center">城市id</td>
+</tr>
+<tr>
+<td align="center">salaryid</td>
+<td align="center">否</td>
+<td align="center">String</td>
+<td align="center">薪资id</td>
+</tr>
+<tr>
+<td align="center">industryid</td>
+<td align="center">否</td>
+<td align="center">String</td>
+<td align="center">行业id</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><br/></p>
+
+<p><h3 id="3.4">消息页</3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://customer/message</p>
+
+<h6>参数</h6>
+
+<p>无</p>
+
+<p><br/>
+<h3 id="3.5">投递进度消息列表页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://customer/postfeedback</p>
+
+<h6>参数</h6>
+
+<p>无</p>
+
+<p><br/>
+<h3 id="3.6">企业直邀消息列表页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://customer/enterpriseinvite</p>
+
+<h6>参数</h6>
+
+<p>无</p>
+
+<p><br/>
+<h3 id="3.7">企业详情页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://customer/company</p>
+
+<h6>参数</h6>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数名</th>
+<th align="center">必须</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">是</td>
+<td align="center">String</td>
+<td align="center">企业id</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><br/>
+<h3 id="3.8">职位详情页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://customer/job</p>
+
+<h6>参数</h6>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数名</th>
+<th align="center">必须</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">是</td>
+<td align="center">String</td>
+<td align="center">职位id</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><br/>
+<h3 id="3.9">发现页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://customer/discover</p>
+
+<h6>参数</h6>
+
+<p>无</p>
+
+<p><br/>
+<h3 id="3.10">简历列表页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://customer/cvlist</p>
+
+<h6>参数</h6>
+
+<p>无</p>
+
+<p><br/>
+<h3 id="3.11">简历编辑页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://customer/cvedit</p>
+
+<h6>参数</h6>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数名</th>
+<th align="center">必须</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">是</td>
+<td align="center">String</td>
+<td align="center">简历id</td>
+</tr>
+<tr>
+<td align="center">uid</td>
+<td align="center">是</td>
+<td align="center">String</td>
+<td align="center">简历所属的用户id</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><br/>
+<h3 id="3.12">创建简历页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://customer/cvcreate</p>
+
+<h6>参数</h6>
+
+<p>无</p>
+
+<p><br/>
+<br/> <br/>
+<h2 id="4">B端</h2></p>
+
+<p><br/>
+<h3 id="4.1">WebView页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://business/webview</p>
+
+<h6>参数：</h6>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数名</th>
+<th align="center">必须</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">url</td>
+<td align="center">是</td>
+<td align="center">String</td>
+<td align="center">WebView要展示的url</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><br/>
+<h3 id="4.2">推荐页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://business/recommend</p>
+
+<h6>参数</h6>
+
+<p>无</p>
+
+<p><br/>
+<h3 id="4.3">简历搜索列表页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://business/cvsearch</p>
+
+<h6>参数</h6>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数名</th>
+<th align="center">必须</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">keyword</td>
+<td align="center">否</td>
+<td align="center">String</td>
+<td align="center">搜索的关键字</td>
+</tr>
+<tr>
+<td align="center">cityid</td>
+<td align="center">否</td>
+<td align="center">String</td>
+<td align="center">城市id</td>
+</tr>
+<tr>
+<td align="center">pid</td>
+<td align="center">否</td>
+<td align="center">String</td>
+<td align="center">省份id</td>
+</tr>
+<tr>
+<td align="center">expid</td>
+<td align="center">否</td>
+<td align="center">String</td>
+<td align="center">工作经验id</td>
+</tr>
+<tr>
+<td align="center">degreeid</td>
+<td align="center">否</td>
+<td align="center">String</td>
+<td align="center">学历id</td>
+</tr>
+<tr>
+<td align="center">refreshid</td>
+<td align="center">否</td>
+<td align="center">String</td>
+<td align="center">更新时间id</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><br/>
+<h3 id="4.4">简历详情页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://business/cvdetail</p>
+
+<h6>参数</h6>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数名</th>
+<th align="center">必须</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">是</td>
+<td align="center">String</td>
+<td align="center">简历id</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><br/>
+<h3 id="4.5">消息页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://business/message</p>
+
+<h6>参数</h6>
+
+<p>无</p>
+
+<p><br/>
+<h3 id="4.6">消息简历管理页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://business/cvmanage</p>
+
+<h6>参数</h6>
+
+<p>无</p>
+
+<p><br/>
+<h3 id="4.7">个人信息编辑页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://business/useredit</p>
+
+<h6>参数</h6>
+
+<p>无</p>
+
+<p><br/>
+<h3 id="4.8">职位管理页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://business/jobmanage</p>
+
+<h6>参数</h6>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数名</th>
+<th align="center">必须</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">type</td>
+<td align="center">否</td>
+<td align="center">int</td>
+<td align="center">0.编辑中；1.招聘中；2.暂停中；3.隐藏；4.审核中。默认1</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><br/>
+<h3 id="4.9">企业详情页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://business/companydetail</p>
+
+<h6>参数</h6>
+
+<p>无</p>
+
+<p><br/>
+<h3 id="4.10">职位详情页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://business/jobdetail</p>
+
+<h6>参数</h6>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数名</th>
+<th align="center">必须</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">是</td>
+<td align="center">String</td>
+<td align="center">职位id</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><br/>
+<h3 id="4.11">沟通设置页</h3></p>
+
+<h6>URL</h6>
+
+<p>chinahr://business/commuconfig</p>
+
+<h6>参数</h6>
+
+<p>无</p>
+</body>
+</html>
